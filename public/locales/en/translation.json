@@ -1,0 +1,53 @@
+{
+  "Header":{
+      "menuItem":{
+          "notification":"Notifications",
+          "profile":"Profile"
+      },
+      "search":"Search..."
+  },
+  "SideDrawer":{
+      "list1":["Chart","Table","Map","Animations"],
+      "list2":["Analytics","Audit Logs"]
+  },
+  "Stepper":{
+      "steps":["Upload Data","Check & Describe", "Visualize", "Publish & Embed"]
+  },
+  "submitButton":"Proceed",
+  "backButton":"Back",
+  "NewChart":{
+      "uploadData":{
+          "heading":"How do you want to upload your data?",
+          "button1":"Copy & paste data",
+          "button2":"XLS/CSV upload",
+          "subHeading1":"Copy & paste your data",
+          "subHeading2":"Upload CSV or Excel spreadsheets",
+          "bodyPara1":"Select your data (including header row/column) in Excel or LibreOffice and paste it in the text field on the right. You can also upload a CSV or Excel file from your computer.",
+          "bodyPara2":"If you just want to try Datawrapper, here‘s a list of some example datasets you can use:" ,
+          "selectInput":{
+              "default":"Select a sample dataset",
+              "first":"Ten",
+              "second":"Twenty",
+              "third":"Thirty"
+          },
+          "textFieldLabel":"Paste your copied data here"
+      },
+      "checkDescribe":{
+          "heading":"Make sure the data looks right",
+          "body":{
+            "part1":"Please make sure that Datawrapper interprets your data correctly. In the table",
+            "part2":"columns should be shown in blue,",
+            "part3":"in green and",
+            "part4":"in black. A",
+            "part5":"cell indicates missing data or a problem in your dataset that needs to be fixed.",
+            "number":"number",
+            "date":"dates",
+            "text":"text",
+            "red":"red"
+          },
+          "checkbox":"First row as label",
+          "headerTableMessage":"Please select atleast two columns",
+          "doubleClickMessage":"Double click on table rows to edit them"
+      }
+  }
+}

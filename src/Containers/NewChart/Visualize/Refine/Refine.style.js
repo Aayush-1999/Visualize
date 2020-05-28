@@ -1,0 +1,53 @@
+export default theme=>({
+    divider:{
+        margin:'7px 0'
+    },
+    gridInput:{
+        marginTop:theme.spacing(1),
+        backgroundColor:'#fff'
+    },
+    input:{
+        paddingTop:'7px',
+        paddingBottom:'8px',
+    },
+    radioGroup:{
+        flexDirection:'row'
+    },
+    refineSection:{
+        marginBottom:theme.spacing(3)
+    },
+    root:{
+        marginTop:theme.spacing(2),
+    },
+    rangeInput:{
+        [theme.breakpoints.up('sm')]:{
+            width:70
+        },
+        [theme.breakpoints.up('lg')]:{
+            width: 90,
+        },
+        marginTop:'-4px',
+        marginRight:theme.spacing(1),
+        marginLeft:theme.spacing(1),
+        backgroundColor:'#fff'
+    },
+    showgroupLabel:{
+        marginTop:'7px'
+    },
+    sectionHeading:{
+        fontWeight:'400'
+    },
+    subFieldSection:{
+        marginLeft:'20px'
+    },
+    subFieldLastSection:{
+        marginTop:'10px',
+        marginLeft:'20px'
+    },
+    switchLabel:{
+        fontSize:'0.9rem'
+    },
+    tooltipPlacement:{
+        // marginLeft:'2rem'
+    }
+})

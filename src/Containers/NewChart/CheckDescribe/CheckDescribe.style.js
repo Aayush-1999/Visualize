@@ -1,0 +1,63 @@
+export default theme=>({
+    alertMessage:{
+        marginTop:theme.spacing(2)
+    },
+    body2:{
+        lineHeight:'1.5rem'
+    },
+    chipNumber:{
+        color:'blue',
+        padding:'2px',
+        margin:'5px',
+        border: '1px solid blue',
+        fontSize:'0.9rem',
+        marginTop:'10px',
+        backgroundColor:'#e3f2fd'
+    },
+    chipDate:{
+        color:'green',
+        padding:'2px',
+        margin:'5px',
+        border: '1px solid green',
+        marginTop:'10px',
+        fontSize:'0.9rem',
+        backgroundColor:'#e8f5e9'
+    },
+    chipText:{
+        color:'black',
+        padding:'2px',
+        margin:'4px',
+        fontSize:'0.9rem',
+        border: '1px solid black',
+        marginTop:'10px',
+        backgroundColor:'#fafafa'
+    },
+    chipProblem:{
+        color:'red',
+        padding:'2px',
+        margin:'5px',
+        fontSize:'0.9rem',
+        border: '1px solid red',
+        marginTop:'10px',
+        backgroundColor:'#ffebee'
+    },
+    contained:{
+        marginTop:theme.spacing(3),
+        margin:theme.spacing(1)
+    },
+    fullWidth:{
+        width:'75%'
+    },
+    messageTopMargin:{
+        marginTop:theme.spacing(1)
+    },
+    marginDense:{
+        marginTop:theme.spacing(2)
+    },
+    tableTopMargin:{
+        marginTop:theme.spacing(2)
+    },
+    dataTable:{
+        width:'97%',
+    }
+})
