@@ -1,0 +1,33 @@
+{
+  "name": "visualize",
+  "version": "1.0.0",
+  "description": "Visualization tool",
+  "main": "app.js",
+  "scripts": {
+    "client-install": "npm install --prefix client",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "server": "nodemon app.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aayush-1999/Visualize.git"
+  },
+  "author": "Aayush Agarwal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aayush-1999/Visualize/issues"
+  },
+  "homepage": "https://github.com/Aayush-1999/Visualize#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "concurrently": "^5.3.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.28"
+  }
+}
