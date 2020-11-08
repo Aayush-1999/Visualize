@@ -9,6 +9,7 @@ require("dotenv").config();
 
 //ROUTES
 const indexRoute         = require("./routes/index");
+const chartRoute         = require("./routes/chart");
 
 mongoose.connect(process.env.DATABASEURL,{ useUnifiedTopology: true ,useNewUrlParser:true});
 mongoose.set("useFindAndModify",false);
@@ -21,6 +22,7 @@ app.use(bodyParser.json());
 middleware(app);
 
 app.use("/",indexRoute);
+app.use("/chart",chartRoute);
 
 app.listen(5000)
 {
