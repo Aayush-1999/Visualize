@@ -76,12 +76,12 @@ function SideDrawer(props) {
       <Divider />
       <List>
         {list2.map((text, index) => (
-          <Tooltip title={text} key={text} arrow id={text} placement='right' >
+          <CustomTooltip title={text} key={text} arrow id={text} placement='right' >
             <ListItem button key={text} component={RouterLink} to={'/'+text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
-          </Tooltip>
+          </CustomTooltip>
         ))}
       </List>
     </div>

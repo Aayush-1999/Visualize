@@ -17,7 +17,7 @@ class NewChart extends Component{
             <Auxiliary>
                 <Stepper />
                 <div className={classes.content}>
-                {this.props.children}
+                    {this.props.children}
                 </div>
             </Auxiliary>
         )
