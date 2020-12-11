@@ -1,15 +1,30 @@
 const express      = require("express"),
       router       = express.Router(),
+      multer       = require("multer"),
+    //   csv          = require('xlsx-parse-json');
       csv          = require("csvtojson");
 
-router.post("/getdata",async(req,res)=>{
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, '/home/aayush_a/Downloads/')
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now())
+    }
+})
+   
+const upload = multer({ storage: storage });
+
+router.post("/uploadFile", upload.single('file'), async(req,res)=>{
     try{  
         //CHECK FILE TYPE
-        let x = "Book1.csv".split('.').pop();
-        
-        //IF CSV
+        const file = req.file;
+        let x = file.originalname.split('.').pop();
+
+        // IF CSV
         if(x === "csv"){
-            const csvData = await csv().fromFile("file path insert here");
+            const csvData = await csv().fromFile(file.path);
+
             let parsedCSV = {
                 columns: [],
                 chartId: "e",
@@ -36,33 +51,39 @@ router.post("/getdata",async(req,res)=>{
                     parsedDataObj.values.push(value);
                     
                     //SETTING DATATYPE FIELD
-                    if(parsedDataObj.dataType === 0){
-                        if(/\d/.test(value) === false){
-                            if(value === "")
+                    if(parsedDataObj.dataType === 0) {
+                        if(/\d/.test(value) === false) {
+                            if(value === "") {
                                 parsedDataObj.dataType = 5;
-                            else if((value === "true") || (value === "false"))
+                            }
+                            else if((value === "true") || (value === "false")) {
                                 parsedDataObj.dataType = 3;
-                            else
+                            }
+                            else {
                                 parsedDataObj.dataType = 4;
+                            }
                         }
-                        else{
-                            if(value.search("-") === -1)
+                        else {
+                            if(value.search("-") === -1) {
                                 parsedDataObj.dataType = 2;
-                            else
+                            }
+                            else {
                                 parsedDataObj.dataType = 1;
+                            }
                         }
                     }
                 })
             });
 
-            res.json(parsedCSV);
+            res.status(200).json(parsedCSV);
         }
         //IF XLSX
-        else{
+        else {
            res.json("Excel data")
         }
     }
     catch(err){
+        console.log(err);
         res.status(500).json({msg:"Some server error occured"});
     }
 })

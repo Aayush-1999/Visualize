@@ -8,8 +8,8 @@ const express               = require("express"),
 require("dotenv").config();
 
 //ROUTES
-const indexRoute         = require("./routes/index");
-const chartRoute         = require("./routes/chart");
+const indexRoute  = require("./routes/index");
+const chartRoute  = require("./routes/chart");
 
 mongoose.connect(process.env.DATABASEURL,{ useUnifiedTopology: true ,useNewUrlParser:true});
 mongoose.set("useFindAndModify",false);
