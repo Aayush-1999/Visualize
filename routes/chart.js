@@ -75,6 +75,11 @@ router.post("/uploadFile", upload.single('file'), async(req,res)=>{
                 })
             });
 
+            parsedCSV.data = {};
+            parsedCSV.data.columns = parsedCSV.columns;
+            parsedCSV.data.numRows = parsedCSV.columns.length;
+            delete parsedCSV.columns;
+
             res.status(200).json(parsedCSV);
         }
         //IF XLSX
