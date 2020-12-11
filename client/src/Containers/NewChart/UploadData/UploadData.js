@@ -127,7 +127,7 @@ class UploadData extends Component{
                             </Grid>
                             <Grid item xs={6} >
                                 <input
-                                    accept=".csv, .ots, .xlsx, .xls, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                                    accept=".csv, .xlsx, .xls, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                                     className={classes.input}
                                     id="button-file"
                                     type="file"
