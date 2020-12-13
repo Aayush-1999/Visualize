@@ -16,12 +16,9 @@ const storage = multer.diskStorage({
    
 const upload = multer({ storage: storage });
 
-router.post("/uploadFile", upload.single('file'), async(req,res)=>{
+router.post("/uploadFile", upload.single('file'), (req,res) => {
     try{  
-        //CHECK FILE TYPE
         const file = req.file;
-        let x = file.originalname.split('.').pop();
-
         const workbook = XLSX.readFile(file.path, {cellDates: true});
         const sheet_name_list = workbook.SheetNames;
         const tableData = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]], { raw: false, defval: ""});
@@ -31,6 +28,19 @@ router.post("/uploadFile", upload.single('file'), async(req,res)=>{
     catch(err){
         console.log(err);
         res.status(500).json({msg:"Some server error occured"});
+    }
+})
+
+router.post("/uploadData", (req, res) => {
+    try{
+        const tableData = XLSX.utils.aoa_to_sheet(req.body.data, { cellDates: true, sheetStubs: true});
+        const jsonData = XLSX.utils.sheet_to_json(tableData, { raw: false, defval: ""});
+        const result = utils.generateJSONOutput(jsonData)
+        res.status(200).json(result)
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).json({msg: "Some server error occured"});
     }
 })
 
