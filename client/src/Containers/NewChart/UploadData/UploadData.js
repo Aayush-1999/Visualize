@@ -70,7 +70,6 @@ class UploadData extends Component{
             let data={
                 "data":valuesArray
             }
-            console.log(data)
             this.axiosfunction('/chart/uploadData',data,false)
         }
     }
