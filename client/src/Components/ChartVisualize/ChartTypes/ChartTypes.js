@@ -43,7 +43,7 @@ function ChartTypes(props){
             <ChartButton index={5} selected={props.selectedButton} clickFunction={props.chartChange} IconComponent={DonutLargeIcon} iconName='Donut Chart' classname={classes} />
             <ChartButton index={6} selected={props.selectedButton} clickFunction={props.chartChange} IconComponent={BubbleChartIcon} iconName='Scatter Plot' classname={classes} />
             <ChartButton index={7} selected={props.selectedButton} clickFunction={props.chartChange} IconComponent={TimelineIcon} iconName='Dot Plot' classname={classes} />
-            <ChartButton index={8} selected={props.selectedButton} clickFunction={props.chartChange} IconComponent={TimelineIcon} iconName='Dot Plot' classname={classes} />
+            {/* <ChartButton index={8} selected={props.selectedButton} clickFunction={props.chartChange} IconComponent={TimelineIcon} iconName='Dot Plot' classname={classes} />
             <ChartButton index={9} selected={props.selectedButton} clickFunction={props.chartChange} IconComponent={TimelineIcon} iconName='Dot Plot' classname={classes} />
             <ChartButton index={10} selected={props.selectedButton} clickFunction={props.chartChange} IconComponent={TimelineIcon} iconName='Dot Plot' classname={classes} />
             <ChartButton index={11} selected={props.selectedButton} clickFunction={props.chartChange} IconComponent={TimelineIcon} iconName='Dot Plot' classname={classes} />
@@ -54,7 +54,7 @@ function ChartTypes(props){
             <ChartButton index={16} selected={props.selectedButton} clickFunction={props.chartChange} IconComponent={TimelineIcon} iconName='Dot Plot' classname={classes} />
             <ChartButton index={17} selected={props.selectedButton} clickFunction={props.chartChange} IconComponent={TimelineIcon} iconName='Dot Plot' classname={classes} />
             <ChartButton index={18} selected={props.selectedButton} clickFunction={props.chartChange} IconComponent={TimelineIcon} iconName='Dot Plot' classname={classes} />
-            <ChartButton index={19} selected={props.selectedButton} clickFunction={props.chartChange} IconComponent={TimelineIcon} iconName='Dot Plot' classname={classes} />
+            <ChartButton index={19} selected={props.selectedButton} clickFunction={props.chartChange} IconComponent={TimelineIcon} iconName='Dot Plot' classname={classes} /> */}
         </Grid>
     )
 }
