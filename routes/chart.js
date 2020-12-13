@@ -1,6 +1,7 @@
 const express      = require("express"),
       router       = express.Router(),
       path         = require("path"),
+      Chart        = require("../models/chart");
       utils        = require("../utils/functions"),
       multer       = require("multer"),
       XLSX         = require('xlsx');
@@ -43,5 +44,24 @@ router.post("/uploadData", (req, res) => {
         res.status(500).json({msg: "Some server error occured"});
     }
 })
+
+router.post("/uploadVerifiedData", (req, res) => {
+    try{
+        Chart.create(req.body, (err, responseChart) => {
+            if(err){
+                console.log(err);
+                res.status(402).json({msg: "Some db error"});
+            }
+            else{
+                res.status(200).json(1);
+            }
+        })
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).json({msg: "Some server error occured"});
+    }
+})
+
 
 module.exports=router;
