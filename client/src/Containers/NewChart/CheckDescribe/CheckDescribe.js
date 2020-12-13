@@ -246,7 +246,7 @@ const mapDispatchToProps=dispatch=>{
     return{
         incrementStepper:()=>dispatch(actions.incStepper(2)),
         decrementStepper:()=>dispatch(actions.decStepper(0)),
-        saveData:(data,selectedColumns)=>dispatch(actions.saveTableData(data,selectedColumns))
+        saveData:(data, selectedColumns)=>dispatch(actions.saveTableData(data, selectedColumns))
     }
 }
 

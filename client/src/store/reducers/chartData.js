@@ -45,9 +45,9 @@ const initialStore={
             ]
         }
     },
-    rawData:"",
-    tableData:null,
-    selectedColumns:null
+    rawData: "",
+    tableData: null,
+    selectedColumns: null,
 }
 
 const reducer=(state=initialStore,action)=>{
