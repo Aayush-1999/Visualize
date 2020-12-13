@@ -35,11 +35,12 @@ class CheckDescribe extends Component{
                 selected:JSON.parse(localStorage.getItem('selectedColumns'))
             }
         }
-        return null
+        return null;
     }
 
     handleChecked=()=>{
-        this.setState({checked:!this.state.checked})
+        this.setState({checked:!this.state.checked, selected: []});
+        this.props.saveData(this.state.tabledata,[]);
     }
 
     handleCheckboxClick = (event, name) => {
@@ -57,8 +58,8 @@ class CheckDescribe extends Component{
             this.state.selected.slice(selectedIndex + 1),
           )
         }
-        this.setState({selected:newSelected})
-        this.props.saveData(this.state.tabledata,newSelected)
+        this.setState({selected:newSelected});
+        this.props.saveData(this.state.tabledata,newSelected);
     }
 
     isSelected = name => this.state.selected.indexOf(name) !== -1
@@ -93,26 +94,26 @@ class CheckDescribe extends Component{
     formSubmitHandler=(event)=>{
         event.preventDefault()
         if(this.state.selected.length>=2){
-            if(this.state.newHeaders.length>0){
+            if(this.state.checked){
+                let dataWithoutHeader={"data":{},"chartId":''}
+                dataWithoutHeader.data.columns=this.state.tabledata.data.columns;
+                dataWithoutHeader.data.numRows=this.state.tabledata.data.numRows;
+                dataWithoutHeader.chartId=this.state.tabledata.chartId;
+                this.props.saveData(dataWithoutHeader,this.state.selected)
+                this.axiosfunction('/chart/uploadVerifiedData',dataWithoutHeader)
+            }
+            else{
                 let dataWithHeader={"data":{},"chartId":''}
-                dataWithHeader.data.columns=this.state.tabledata.data.columns
-                dataWithHeader.data.numRows=this.state.tabledata.data.numRows
-                dataWithHeader.chartId=this.state.tabledata.chartId
-                for(let i=0;i<dataWithHeader.data.numRows;i++){
+                dataWithHeader.data.columns=this.state.tabledata.data.columns;
+                dataWithHeader.data.numRows=this.state.tabledata.data.numRows + 1;
+                dataWithHeader.chartId=this.state.tabledata.chartId;
+                for(let i=0;i<this.state.tabledata.data.numRows;i++){
                     let val=dataWithHeader.data.columns[i].header;
                     dataWithHeader.data.columns[i].values.unshift(val);
                     dataWithHeader.data.columns[i].header=this.state.newHeaders[i];
                 }
-                this.props.saveData(dataWithHeader,this.state.selected)
-                this.axiosfunction('/chart/uploadVerifiedData',dataWithHeader)
-            }
-            else{
-                let dataWithoutHeader={"data":{},"chartId":''}
-                dataWithoutHeader.data.columns=this.state.tabledata.data.columns
-                dataWithoutHeader.data.numRows=this.state.tabledata.data.numRows
-                dataWithoutHeader.chartId=this.state.tabledata.chartId
-                this.props.saveData(dataWithoutHeader,this.state.selected)
-                this.axiosfunction('/chart/uploadVerifiedData',dataWithoutHeader)
+                this.props.saveData(dataWithHeader,this.state.selected);
+                this.axiosfunction('/chart/uploadVerifiedData',dataWithHeader);
             }
         }
     }
@@ -205,6 +206,7 @@ class CheckDescribe extends Component{
                             variant="contained" 
                             color="primary"
                             size="small"
+                            disabled = {this.state.selected.length >=2 ? false: true}
                             onClick={this.formSubmitHandler}
                             endIcon={<Icon>send</Icon>}
                             className={classes.contained}
