@@ -95,9 +95,10 @@ class Visualize extends Component{
             if(response.status===200){
                 this.props.incrementStepper()
                 this.props.history.push({
-                    pathname:"/chart/publish",
+                    pathname: "/chart/publish",
                     state:{
-                        config: this.state.chartConf
+                        config: this.state.chartConf,
+                        resObj: response.data
                     }
                 })
             }
