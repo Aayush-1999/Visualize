@@ -1,9 +1,19 @@
 module.exports = {
 
+    generateRandomString: function(length) {
+        var result           = '';
+        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for ( var i = 0; i < length; i++ ) {
+           result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    },
+
     generateJSONOutput: function(data){
         let parsedData = {
             columns: [],
-            chartId: "e",
+            chartId: this.generateRandomString(5),
             dataTypeInfo: {
                 1: "Date",
                 2: "Number",
