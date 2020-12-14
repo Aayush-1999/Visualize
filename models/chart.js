@@ -7,6 +7,7 @@ const ChartSchema = new mongoose.Schema({
         columns: { type: Array, default: []},
         numRows: { type: Number, default: null }
     },
+    config: { type: Object },
 })
 
 module.exports = mongoose.model("Chart", ChartSchema);
