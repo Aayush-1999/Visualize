@@ -67,7 +67,6 @@ router.post("/uploadVerifiedData", (req, res) => {
 
 router.post("/saveChartConfig", (req, res) => {
     try{
-        console.log(req.body)
         Chart.update({chartId: req.body.chartId}, { $set: {config: req.body.chartConfig}}, (err, responseChart) => {
             if(err){
                 console.log(err);

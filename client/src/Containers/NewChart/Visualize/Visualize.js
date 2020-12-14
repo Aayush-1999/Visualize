@@ -86,7 +86,6 @@ class Visualize extends Component{
         const formData = {};
         formData.chartId = this.state.data.chartId;
         formData.chartConfig = this.state.chartConf;
-        console.log(formData)
         axios({
             url: '/chart/saveChartConfig',
             method:'POST',
