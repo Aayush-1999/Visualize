@@ -13,6 +13,7 @@ import ChartTypes from '../../../Components/ChartVisualize/ChartTypes/ChartTypes
 import Refine from './Refine/Refine';
 // import Annotate from '../../../Components/ChartVisualize/Annotate/Annotate';
 // import Design from '../../../Components/ChartVisualize/Design/Design';
+import axios from '../../../axiosInstance';
 import * as actions from '../../../store/actions/index';
 import styles from './Visualize.style';
 
@@ -44,12 +45,12 @@ class Visualize extends Component{
                 initialChartConfig.series.push({
                     name: column.header,
                     type: 'bar',
-                    data: column.values.slice(1,column.values.length)
+                    data: column.values
                 })
                 updatedSelectedColumns[0]=column.header
             }
             else if(selectedColumns.includes(column.header) && (column.dataType===1 || column.dataType===4)){
-                initialChartConfig.yAxis.data=column.values.slice(1,column.values.length)
+                initialChartConfig.yAxis.data=column.values
                 updatedSelectedColumns[1]=column.header
             }
             if(column.dataType===2){
@@ -78,6 +79,33 @@ class Visualize extends Component{
         chartButton[i]=true;
         let type=iconName.replace(/\s/g, "").toLowerCase()
         this.setState({chartButtonSelected:chartButton,chartType:type})
+    }
+
+    formSubmitHandler=(event)=>{
+        event.preventDefault();
+        const formData = {};
+        formData.chartId = this.state.data.chartId;
+        formData.chartConfig = this.state.chartConf;
+        console.log(formData)
+        axios({
+            url: '/chart/saveChartConfig',
+            method:'POST',
+            data:formData
+        })
+        .then(response=>{
+            if(response.status===200){
+                this.props.incrementStepper()
+                this.props.history.push({
+                    pathname:"/chart/publish",
+                    state:{
+                        config: this.state.chartConf
+                    }
+                })
+            }
+        })
+        .catch(err=>{
+            console.log(err);
+        })   
     }
 
     render(){
