@@ -55,7 +55,7 @@ router.post("/uploadVerifiedData", (req, res) => {
                 res.status(402).json({msg: "Some db error"});
             }
             else{
-                res.status(200).json();
+                res.status(200).json({});
             }
         })
     }
@@ -74,7 +74,7 @@ router.post("/saveChartConfig", (req, res) => {
             }
             else{
                 console.log(responseChart);
-                res.status(200).json();
+                res.status(200).json({msg: "some response"});
             }
         })
     }

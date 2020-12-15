@@ -23,13 +23,29 @@ class Visualize extends Component{
         }
     }
 
-    componentDidMount(){
-        let initialChartConfig = this.state.chartConf
+    // componentDidMount(){
+    //     // console.log(initialChartConfig)
+    // }
 
-        this.setState({
-            chartConf:initialChartConfig,
-        })
-        // this.props.saveChartConfigAndColumns(initialChartConfig,'bar',updatedSelectedColumns)
+    addToolboxConfig(){
+        let initialChartConfig = this.state.chartConf;
+        const toolBoxConfig = {
+            show: true,
+            showTitle: true,
+            feature: {
+                magicType: {
+                    title: {
+                        line: 'Line chart',
+                        bar: 'Bar chart'
+                    }, 
+                    show: true,
+                    type: ['line', 'bar']},
+                restore: {title: 'Restore', show: true},
+                saveAsImage: {title: 'Save As Image', show: true, type: 'png'}
+            }
+        }
+        initialChartConfig.toolbox = {...toolBoxConfig}
+        return initialChartConfig;
     }
 
     formSubmitHandler=(event)=>{
@@ -59,9 +75,7 @@ class Visualize extends Component{
     }
 
     render(){
-        console.log(this.state.chartConf)
         const {classes,t} = this.props;
-    
         return(
             <NewChart>
                 <Grid container spacing={6}>
@@ -88,7 +102,7 @@ class Visualize extends Component{
                     </Grid>
                     <Grid item xs={12} sm={7} md={8} position="fixed" >
                         <div className={classes.chartContainer}  >
-                            <BarChart option={this.state.chartConf} />
+                            <BarChart option={this.addToolboxConfig()} />
                         </div>
                     </Grid>
                 </Grid>
