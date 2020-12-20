@@ -1,3 +1,6 @@
+const   fs   = require("fs"),
+        path = require("path");
+
 module.exports = {
 
     generateRandomString: function(length) {
@@ -66,7 +69,29 @@ module.exports = {
         parsedData.data.numRows = parsedData.columns.length;
         delete parsedData.columns;
         return parsedData;
-    }
+    },
+
+    buildHtml: function(chartConfig){
+        delete chartConfig.toolbox
+        const code = "<!DOCTYPE html><html>" +
+            "<head><script src=\"https://cdnjs.cloudflare.com/ajax/libs/echarts/4.6.0/echarts-en.min.js\"></script></head>" + 
+            "<body><div id=\"chart\" style=\"width: 100vw; height: 100vh;\"></div>" + 
+            "<script>var chart = document.getElementById(\'chart\');var myChart = echarts.init(chart);" + 
+            "myChart.setOption(" + chartConfig + ");</script></body></html>"
+        return code;
+    },
+
+    createChartImage: function(data){
+        const options = data.chartConfig;
+        delete options.toolbox;
+        var htmlCode = this.buildHtml(JSON.stringify(options));
+        const fileName = `/home/aayush_a/Downloads/${data.chartId}-${Date.now()}.html`;
+        const stream = fs.createWriteStream(fileName);
+        stream.once('open', function(fd) {
+            stream.end(htmlCode);
+        });
+        return fileName
+    },
 
 
 }

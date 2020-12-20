@@ -1,5 +1,3 @@
-const { response } = require("express");
-
 const express      = require("express"),
       router       = express.Router(),
       path         = require("path"),
@@ -73,8 +71,8 @@ router.post("/saveChartConfig", (req, res) => {
                 res.status(402).json({msg: "Some db error"});
             }
             else{
-                console.log(responseChart);
-                res.status(200).json({msg: "some response"});
+                const chartLink = utils.createChartImage(req.body);
+                res.status(200).json({embeddedLink : chartLink});
             }
         })
     }
