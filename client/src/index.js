@@ -9,6 +9,7 @@ import App from './App';
 import i18n from './i18next';
 import stepperReducer from './store/reducers/stepper';
 import chartDataReducer from './store/reducers/chartData';
+import authReducer from './store/reducers/auth';
 import Spinner from './Components/UI/Spinner/Spinner';
 import * as serviceWorker from './serviceWorker';
 
@@ -16,7 +17,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer=combineReducers({
     stepper:stepperReducer,
-    chartData:chartDataReducer
+    chartData:chartDataReducer,
+    auth: authReducer
 });
 
 const store=createStore(rootReducer,composeEnhancers(
