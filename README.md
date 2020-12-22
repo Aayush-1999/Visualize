@@ -7,14 +7,15 @@ An interactive and responsive chart making tool which can be embedded in your st
 - Copy & Paste your data or Upload your excel/csv file
 - Edit your data ( Change datatype of your values, fill empty cells, add or delete columns,rows and cells )
 - Edit your chart ( Customization and Annotation )
-- Copy the embedded link of your chart
+- Copy the embedded link of your chart or download the chart as png image.
 
 ## Technologies Used
 
-* Java J2EE
-* MySql
 * React
+* Nodejs
+* Express
+* MongoDB
+* Echart.js
 * Redux
-* Hooks
-* Axios
 * Material-UI
+* XLSX
