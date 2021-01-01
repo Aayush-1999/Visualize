@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Icon from '@material-ui/core/Icon';
@@ -90,7 +91,7 @@ class Visualize extends Component{
                             {t('NewChart.publishAndEmbed.subHeading1')}
                         </Typography>
                         <Typography variant="subtitle1" gutterBottom > 
-                            https://datawrapper.dwcdn.net/FV92s/2/
+                           <a href={"///"+this.state.shareLink.embeddedLink} target="_blank">{ this.state.shareLink.embeddedLink}</a>
                         </Typography>
                         <Divider className={classes.dividerSpacing}/>
                         <Typography variant="subtitle2" gutterBottom className={classes.container}> 
