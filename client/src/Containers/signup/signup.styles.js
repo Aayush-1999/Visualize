@@ -5,9 +5,7 @@ export default theme=>({
         }
     },
     accountIcon:{
-        margin:`${theme.spacing(10)}px ${theme.spacing(8)}px`,
-        width:'145px',
-        height:'180px'
+        margin: `${theme.spacing(10)}px ${theme.spacing(4)}px`
     },
     avatar: {
         marginTop: theme.spacing(1),

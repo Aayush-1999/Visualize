@@ -62,11 +62,10 @@ class Login extends Component{
                     password:this.state.password
                 })
                 .then(response=>{
-                    console.log(response);
                     if(response.status===200){
                         this.props.onAuthStart(response.data)
                         this.props.history.push({
-                            pathname: "/home",
+                            pathname: "/",
                             state:{user:response.data}
                         });
                     }
