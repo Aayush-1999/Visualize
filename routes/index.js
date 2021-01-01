@@ -75,20 +75,4 @@ router.post("/login/checkPwd",async(req, res) => {
     }
 })
 
-router.post("/token",async (req,res)=>{
-    const refreshToken = req.body.refreshToken
-    if((refreshToken in refreshTokens) && (refreshTokens[refreshToken]==req.body.email)){
-        const user = await User.findOne({email:req.body.email})
-        const token=jwt.sign(
-            {id:user._id},
-            process.env.JWT_SECRET_KEY,
-            { expiresIn:3600 }
-        )
-        res.status(200).json({user,token,refreshToken})
-    }
-    else {
-        res.status(404).json({mssg:'Invalid request'})
-    }
-})
-
 module.exports=router;
