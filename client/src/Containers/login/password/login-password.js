@@ -66,7 +66,6 @@ class Login extends Component{
                         this.props.onAuthStart(response.data)
                         this.props.history.push({
                             pathname: "/",
-                            state:{user:response.data}
                         });
                     }
                 })

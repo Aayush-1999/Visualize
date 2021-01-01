@@ -28,7 +28,7 @@ class SignUp extends Component{
             lastName:null,
             email:null,
             password: undefined,
-            confirm:null
+            confirmPassword:null
         },
         progressBar:false,
         showPassword:false
@@ -36,7 +36,7 @@ class SignUp extends Component{
 
     handleChange = (event,key) => {
         const newUser = {...this.state.user}
-        newUser.key = event.target.value
+        newUser[key] = event.target.value
         this.setState({user:newUser})
     }
 
@@ -63,7 +63,6 @@ class SignUp extends Component{
                         this.props.onAuthStart(response.data)
                         this.props.history.push({
                             pathname: "/",
-                            state:{user:response.data}
                         });
                     }
                 })
