@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
+import { useDispatch } from 'react-redux';
 import clsx from 'clsx';
 import {Link} from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { fade, makeStyles } from '@material-ui/core/styles';
+import * as actions from '../../../store/actions/index';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -16,6 +18,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const drawerWidth = 240;
 
@@ -106,6 +109,7 @@ const useStyles = makeStyles(theme => ({
 export default function Header(props) {
   const classes = useStyles();
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
@@ -118,6 +122,11 @@ export default function Header(props) {
   const handleMobileMenuOpen = event => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+
+  const handleLogout = () => {
+    window.location.reload();
+    dispatch(actions.logout);
+  }
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
@@ -132,14 +141,14 @@ export default function Header(props) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
+      {/* <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">
           <Badge badgeContent={11} color="secondary">
             <NotificationsIcon />
           </Badge>
         </IconButton>
         <p>{t('Header.menuItem.notification')}</p>
-      </MenuItem>
+      </MenuItem> */}
       <MenuItem >
         <IconButton
           aria-label="account of current user"
@@ -150,6 +159,17 @@ export default function Header(props) {
           <AccountCircle />
         </IconButton>
         <p>{t('Header.menuItem.profile')}</p>
+      </MenuItem>
+      <MenuItem onClick = {handleLogout}>
+        <IconButton
+          aria-label="logout"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <ExitToAppIcon />
+        </IconButton>
+        <p>{t('Header.menuItem.logout')}</p>
       </MenuItem>
     </Menu>
   );
@@ -188,18 +208,27 @@ export default function Header(props) {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
+            {/* <IconButton aria-label="show 17 new notifications" color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <NotificationsIcon />
               </Badge>
-            </IconButton>
+            </IconButton> */}
             <IconButton
-              edge="end"
+              // edge="end"
               aria-label="account of current user"
               aria-haspopup="true"
               color="inherit"
             >
               <AccountCircle />
+            </IconButton>
+            <IconButton
+              edge="end"
+              aria-label="logout"
+              aria-haspopup="true"
+              color="inherit"
+              onClick = {handleLogout}
+            >
+              <ExitToAppIcon />
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>
