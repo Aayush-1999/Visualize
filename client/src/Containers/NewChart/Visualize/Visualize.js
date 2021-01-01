@@ -142,14 +142,14 @@ class Visualize extends Component{
                                 value="refine" >
                                 Refine
                             </ToggleButton>
-                            <ToggleButton classes={{root:classes.root,selected:classes.selected}}
+                            {/* <ToggleButton classes={{root:classes.root,selected:classes.selected}}
                                 value="annotate" >
                                 Annotate
                             </ToggleButton>
                             <ToggleButton classes={{root:classes.root,selected:classes.selected}}
                                 value="design">
                                 Design
-                            </ToggleButton>
+                            </ToggleButton> */}
                         </ToggleButtonGroup>
                         {tabContent}
                         <Button 

@@ -119,6 +119,7 @@ class CheckDescribe extends Component{
     }
 
     axiosfunction=(urlType,formData)=>{
+        formData.token = this.props.userToken;
         axios({
             url:urlType,
             method:'POST',
@@ -238,7 +239,8 @@ class CheckDescribe extends Component{
 const mapStateToProps=state=>{
     return{
         updatedTableData:state.chartData.tableData,
-        updatedSelectedColumns:state.chartData.selectedColumns
+        updatedSelectedColumns:state.chartData.selectedColumns,
+        userToken: state.auth.token,
     }
 }
 
