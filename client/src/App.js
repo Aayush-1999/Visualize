@@ -41,6 +41,7 @@ class App extends Component{
             <Route path="/chart/describe" component={CheckDescribe} />
             <Route path="/chart/visualize" component={Visualize} />
             <Route path="/chart/publish" component={Publish} />
+            <Redirect to="/" />
           </Switch>
         </Layout>
       )
