@@ -85,12 +85,13 @@ module.exports = {
         const options = data.chartConfig;
         delete options.toolbox;
         var htmlCode = this.buildHtml(JSON.stringify(options));
-        const fileName = `/home/aayush_a/Downloads/${data.chartId}-${Date.now()}.html`;
+        const filePath = './us-east-2.elasticbeanstalk.com'
+        const fileName = filePath + `/${data.chartId}.html`;
         const stream = fs.createWriteStream(fileName);
         stream.once('open', function(fd) {
             stream.end(htmlCode);
         });
-        return fileName
+        return fileName;
     },
 
 

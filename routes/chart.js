@@ -1,7 +1,10 @@
+const chart = require("../models/chart");
+
 const express      = require("express"),
       router       = express.Router(),
       path         = require("path"),
-      Chart        = require("../models/chart");
+      Chart        = require("../models/chart"),
+      User         = require("../models/user"),
       utils        = require("../utils/functions"),
       multer       = require("multer"),
       XLSX         = require('xlsx');
@@ -47,15 +50,29 @@ router.post("/uploadData", (req, res) => {
 
 router.post("/uploadVerifiedData", (req, res) => {
     try{
-        Chart.create(req.body, (err, responseChart) => {
-            if(err){
-                console.log(err);
-                res.status(402).json({msg: "Some db error"});
-            }
-            else{
-                res.status(200).json({});
-            }
-        })
+        if(req.body.token){
+            User.findOne({token: req.body.token}).lean().exec((err, user) => {
+                if(err){
+                    res.status(402).json({msg: "User not found"});
+                }
+                else{
+                    req.body.user = user._id;
+                    delete req.body.token;
+                    Chart.create(req.body, (err, responseChart) => {
+                        if(err){
+                            console.log(err);
+                            res.status(402).json({msg: "Some db error"});
+                        }
+                        else{
+                            res.status(200).json({});
+                        }
+                    })
+                }
+            })
+        }
+        else{
+            res.status(200).json({msg: "Unauthenticated request"});
+        }
     }
     catch(err){
         console.log(err);
@@ -71,7 +88,8 @@ router.post("/saveChartConfig", (req, res) => {
                 res.status(402).json({msg: "Some db error"});
             }
             else{
-                const chartLink = utils.createChartImage(req.body);
+                let chartLink = utils.createChartImage(req.body);
+                chartLink = chartLink.replace('.', process.env.SERVER_URL)
                 res.status(200).json({embeddedLink : chartLink});
             }
         })

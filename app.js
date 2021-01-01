@@ -18,13 +18,14 @@ mongoose.set("useCreateIndex",true);
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
+app.use('/us-east-2.elasticbeanstalk.com', express.static('us-east-2.elasticbeanstalk.com'));
 
 middleware(app);
 
 app.use("/",indexRoute);
 app.use("/chart",chartRoute);
 
-app.listen(5000)
+app.listen(process.env.PORT)
 {
     console.log("Server has started");
 }

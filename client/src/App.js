@@ -25,7 +25,7 @@ class App extends Component{
         <Route path="/signin" exact component={LoginEmail} />
         <Route path="/signin/pwd" exact component={LoginPassword} />
         <Route path="/signup" exact component={SignUp} />
-        <Redirect to="/" />
+        {/* <Redirect to="/" /> */}
       </Switch>
     )
       
