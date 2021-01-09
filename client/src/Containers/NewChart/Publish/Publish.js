@@ -8,11 +8,16 @@ import Icon from '@material-ui/core/Icon';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import NewChart from '../NewChart';
 import BarChart from '../../../Components/Charts/BarChart/BarChart';
 import axios from '../../../axiosInstance';
 import * as actions from '../../../store/actions/index';
 import styles from './Publish.style';
+
+
+let iframeCode = "<iframe title='[ Insert title here ]' aria-label='Bar Chart' id='datawrapper-chart-OF0SQ' src='chartLink' scrolling='no' frameborder='0' style='width: 0; min-width: 100% !important; border: none;' height='184'></iframe><script type='text/javascript'>!function(){'use strict';window.addEventListener('message',(function(a){if(void 0!==a.data['datawrapper-height'])for(var e in a.data['datawrapper-height']){var t=document.getElementById('datawrapper-chart-'+e)||document.querySelector('iframe[src*=''+e+'']');t&&(t.style.height=a.data['datawrapper-height'][e]+'px')}}))}();</script>"
 
 class Visualize extends Component{
     constructor(props){
@@ -75,8 +80,17 @@ class Visualize extends Component{
         })   
     }
 
+    copyToClipboard = () => {
+        const context = this.textArea;
+        console.log(context)
+        context.select();
+        document.execCommand("copy");
+    }
+
     render(){
         const {classes,t} = this.props;
+        const embedCode = iframeCode.replace('chartLink', this.state.shareLink.embeddedLink)
+
         return(
             <NewChart>
                 <Grid container spacing={6}>
@@ -97,9 +111,22 @@ class Visualize extends Component{
                         <Typography variant="subtitle2" gutterBottom className={classes.container}> 
                             {t('NewChart.publishAndEmbed.subHeading2')}
                         </Typography>
-                        <Typography variant="subtitle1" gutterBottom > 
-                            https://datawrapper.dwcdn.net/FV92s/2/
-                        </Typography>
+                        <Grid container spacing={6}>
+                            <Grid item xs={12} sm={6}>
+                                <TextareaAutosize aria-label="iframe embed code" input rowsMax={2} placeholder={embedCode} ref={(textarea) => this.textArea = textarea} />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <Button
+                                    variant="contained"
+                                    color="default"
+                                    size="small"
+                                    onClick={this.copyToClipboard}
+                                    startIcon={<FileCopyIcon />}
+                                >
+                                    Copy
+                                </Button>
+                            </Grid>
+                        </Grid>
                     </Grid>
                     <Grid item xs={12} sm={7} md={8} position="fixed" >
                         <div className={classes.chartContainer}  >
